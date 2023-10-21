@@ -271,13 +271,16 @@ class BoundSkin(BoundController):
         self.id = skin.id
         self.index = skin.index
         self.joint_matrices = skin.joint_matrices
-        self.geometry = skin.geometry.bind(numpy.dot(matrix, skin.bind_shape_matrix), materialnodebysymbol)
 
     def __len__(self):
         return len(self.index)
 
     def __getitem__(self, i):
         return self.index[i]
+
+    @property
+    def geometry(self):
+        return self.skin.geometry.bind(numpy.dot(self.matrix, self.skin.bind_shape_matrix), self.materialnodebysymbol)
 
     def getJoint(self, i):
         return self.skin.weight_joints[i]
