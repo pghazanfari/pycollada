@@ -45,7 +45,6 @@ class Input(DaeObject):
             raise DaeError("Input node of animation sampler missing semantic or source")
         if source[1:] not in localscope:
             raise DaeError("Input of animation sampler refering to source '%s' not found" % source)
-        print("input.source=", localscope[source[1:]])
         return Input(semantic, localscope[source[1:]])
 
 class Sampler(DaeObject):
